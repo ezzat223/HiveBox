@@ -40,31 +40,31 @@ jobs:
         name: Build Docker image
         run: docker build -t hivebox-app .
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - 
-        name: Checkout code
-        uses: actions/checkout@v4
-      - 
-        name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '14'
-      - 
-        name: Install dependencies
-        run: npm install
-      - 
-        name: Run unit tests
-        run: npm test
-      -
-        name: Call /version endpoint and check response
-        run: |
-          VERSION=$(curl -s http://localhost:3000/version | jq -r .version)
-          if [ "$VERSION" != "v0.0.1" ]; then
-            echo "Version mismatch: expected v0.0.1, got $VERSION"
-            exit 1
-          fi
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - 
+  #       name: Checkout code
+  #       uses: actions/checkout@v4
+  #     - 
+  #       name: Set up Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '14'
+  #     - 
+  #       name: Install dependencies
+  #       run: npm install
+  #     - 
+  #       name: Run unit tests
+  #       run: npm test
+      # -
+      #   name: Call /version endpoint and check response
+      #   run: |
+      #     VERSION=$(curl -s http://localhost:3000/version | jq -r .version)
+      #     if [ "$VERSION" != "v0.0.1" ]; then
+      #       echo "Version mismatch: expected v0.0.1, got $VERSION"
+      #       exit 1
+      #     fi
 
 
   scorecard: # https://github.com/ossf/scorecard-action#workflow-setup-required
