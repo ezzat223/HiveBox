@@ -1,4 +1,4 @@
-import { version } from './package.json';
+const { version } = require('./package.json');
 
 // function printVersion() {
 //   console.log(`Current app version: v${version}`);
@@ -11,4 +11,4 @@ function getAppVersion() {
   return version; // Return the version from package.json
 }
 
-export default { getAppVersion };
+module.exports = { getAppVersion };
