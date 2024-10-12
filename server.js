@@ -1,7 +1,7 @@
 /* ---------------- imports ---------------- */
-const express = require('express');
-const axios = require('axios');
-const { getAppVersion } = require('./version');
+import express from 'express';
+import { get } from 'axios';
+import { getAppVersion } from './version';
 
 /* ---------------- Global Vars ---------------- */
 const app = express();
@@ -19,7 +19,7 @@ app.get('/version', (req, res) => {
  */
 async function fetchSenseBoxData() {
   try {
-    const response = await axios.get('https://api.opensensemap.org/boxes/670acf5c08ceb70008f66c3b/sensors/670acf5c08ceb70008f66c3c?onlyValue=true');
+    const response = await get('https://api.opensensemap.org/boxes/670acf5c08ceb70008f66c3b/sensors/670acf5c08ceb70008f66c3c?onlyValue=true');
     return response.data;  // Return the data fetched
   } catch (error) {
     throw new Error('Error fetching SenseBox data: ' + error.message);
