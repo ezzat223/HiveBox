@@ -5,9 +5,11 @@ WORKDIR /app
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 # Copy the remaining project files
 COPY . .
+
+USER node
 
 CMD ["npm", "start"]
