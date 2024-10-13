@@ -1,0 +1,13 @@
+groups:
+- name: HiveBox
+  rules:
+    - record: job:up                        # Recording Rule
+      expr: up{job="HiveBox-metrics"}     # checks if HiveBox is up or down (1 for up and 0 for down)
+    - alert: HiveBoxDown                  # Alerting Rule
+      expr: job:up == 0                     # fire alert if App is Down            
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Instance [{{ $labels.instance }}] down"
+        description: "[{{ $labels.instance }}] of job [{{ $labels.job }}] has been down for more than 1 minute."

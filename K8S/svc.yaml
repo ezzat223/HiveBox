@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hivebox-service
+spec:
+  selector:
+    app: hivebox-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: NodePort # make it LoadBalancer for ingress, i made it NodePort for testing only
