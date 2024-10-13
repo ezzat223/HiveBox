@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hivebox-app
+  namespace: hivebox
 spec:
   replicas: 1
   selector:
@@ -14,6 +15,6 @@ spec:
     spec:
       containers:
         - name: hivebox-app
-          image: hivebox-app:latest
+          image: ezzat22/hivebox-app:latest
           ports:
             - containerPort: 3000
