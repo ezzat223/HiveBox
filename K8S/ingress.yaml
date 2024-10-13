@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: hivebox-ingress
   namespace: hivebox
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: hivebox.local
@@ -15,3 +17,12 @@ spec:
                 name: hivebox-service
                 port:
                   number: 80
+
+
+
+# >minikube ssh
+# >cat /etc/hosts
+# >sudo /bin/sh -c 'echo "<minikube ip> hivebox.local" >> /etc/hosts'
+# >hivebox.local
+# add it to the /etc/hosts of your local machine too
+# >minikube tunnel
